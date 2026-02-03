@@ -1,0 +1,819 @@
+<!--
+  Save this file as: index.html
+  Then upload to GitHub (public repo) and enable GitHub Pages:
+  Repo → Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: main / (root)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Muhammad Bilal — Digital Insights & Growth Strategist</title>
+  <meta name="description" content="Muhammad Bilal — Digital Insights & Growth Strategist. I turn complex data into decisions people actually use. AI-powered analytics, conversational data bots, customer scoring models, and award-winning growth campaigns." />
+  <meta name="keywords" content="Muhammad Bilal, Digital Insights, Growth Marketing, Product Analytics, SQL, Power BI, Tableau, AI, Copilot, Customer Scoring Model, Shopify, Performance Marketing" />
+  <meta name="author" content="Muhammad Bilal" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Muhammad Bilal — Digital Insights & Growth Strategist" />
+  <meta property="og:description" content="I turn complex data into decisions people actually use." />
+  <meta property="og:type" content="website" />
+
+  <!-- Apple-like minimalist styling -->
+  <style>
+    :root{
+      --bg: #ffffff;
+      --card: rgba(255,255,255,.72);
+      --text: #0b0b0f;
+      --muted: rgba(11,11,15,.62);
+      --border: rgba(11,11,15,.10);
+      --shadow: 0 12px 40px rgba(0,0,0,.08);
+      --accent: #0a84ff; /* subtle “Apple-ish” blue */
+      --accent2: rgba(10,132,255,.12);
+      --radius: 18px;
+      --max: 1040px;
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    [data-theme="dark"]{
+      --bg: #07070a;
+      --card: rgba(20,20,26,.56);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.62);
+      --border: rgba(255,255,255,.12);
+      --shadow: 0 14px 48px rgba(0,0,0,.45);
+      --accent: #64d2ff;
+      --accent2: rgba(100,210,255,.14);
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background: radial-gradient(1000px 600px at 20% -10%, var(--accent2), transparent 55%),
+                  radial-gradient(900px 520px at 90% 0%, rgba(140,255,210,.08), transparent 55%),
+                  radial-gradient(900px 520px at 60% 120%, rgba(255,160,120,.06), transparent 55%),
+                  var(--bg);
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; text-decoration-color: rgba(10,132,255,.45); text-underline-offset: 4px; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 22px 18px 80px; }
+
+    /* Top Nav */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(255,255,255,.72), rgba(255,255,255,.22));
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+    }
+    [data-theme="dark"] .nav{
+      background: linear-gradient(to bottom, rgba(10,10,14,.72), rgba(10,10,14,.22));
+    }
+    .nav-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+    .dot{
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px var(--accent2);
+    }
+    .nav-links{
+      display:flex; align-items:center; gap:14px;
+      color: var(--muted);
+      font-size: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav-links a{ padding: 8px 10px; border-radius: 12px; }
+    .nav-links a:hover{ background: rgba(0,0,0,.04); text-decoration: none; }
+    [data-theme="dark"] .nav-links a:hover{ background: rgba(255,255,255,.06); }
+
+    .btn{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.60);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: transform .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease);
+      user-select: none;
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    [data-theme="dark"] .btn{ background: rgba(20,20,26,.55); }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(10,132,255,.32); }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+    .btn .icon{ font-family: var(--mono); font-size: 12px; opacity: .85; }
+
+    /* Hero */
+    .hero{
+      padding: 56px 0 24px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; padding-top: 34px; }
+    }
+    .h-title{
+      font-size: clamp(34px, 4.4vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin: 0 0 14px;
+    }
+    .h-sub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+    .pill-row{ display:flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .pill{
+      font-size: 12px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.55);
+      color: rgba(11,11,15,.82);
+    }
+    [data-theme="dark"] .pill{
+      background: rgba(20,20,26,.5);
+      color: rgba(255,255,255,.78);
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card-pad{ padding: 18px; }
+
+    .stat{
+      display:flex; flex-direction: column; gap: 6px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.55);
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .stat{ background: rgba(20,20,26,.50); }
+    .stat .k{ font-size: 12px; color: var(--muted); }
+    .stat .v{ font-size: 16px; font-weight: 650; letter-spacing: -0.02em; }
+
+    .cta-row{ display:flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .cta-primary{
+      background: var(--text);
+      color: var(--bg);
+      border-color: rgba(0,0,0,.0);
+    }
+    [data-theme="dark"] .cta-primary{ background: rgba(255,255,255,.92); color: #07070a; }
+    .cta-primary:hover{ border-color: rgba(0,0,0,.0); }
+    .cta-secondary{ background: rgba(255,255,255,.62); }
+    [data-theme="dark"] .cta-secondary{ background: rgba(20,20,26,.55); }
+
+    /* Sections */
+    section{ padding: 34px 0 0; }
+    .sec-head{
+      display:flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .sec-title{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+    .sec-note{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 60ch;
+      text-align: right;
+    }
+    @media (max-width: 760px){
+      .sec-head{ flex-direction: column; align-items: flex-start; }
+      .sec-note{ text-align: left; }
+    }
+
+    /* Projects grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .proj{ grid-column: span 6; cursor: pointer; transition: transform .25s var(--ease), border-color .25s var(--ease); }
+    .proj:hover{ transform: translateY(-3px); border-color: rgba(10,132,255,.34); }
+    @media (max-width: 900px){ .proj{ grid-column: span 12; } }
+
+    .proj-top{
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid var(--border);
+      display:flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .proj-title{ font-weight: 680; letter-spacing: -0.02em; margin:0; }
+    .proj-tag{
+      font-size: 12px; color: var(--muted);
+      padding: 6px 10px; border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.55);
+      white-space: nowrap;
+    }
+    [data-theme="dark"] .proj-tag{ background: rgba(20,20,26,.50); }
+    .proj-body{ padding: 14px 18px 16px; }
+    .proj-desc{ margin:0 0 12px; color: var(--muted); font-size: 14px; }
+    .proj-meta{ display:flex; flex-wrap: wrap; gap: 8px; }
+    .chip{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.55);
+      color: rgba(11,11,15,.84);
+    }
+    [data-theme="dark"] .chip{ background: rgba(20,20,26,.50); color: rgba(255,255,255,.78); }
+
+    /* Skills */
+    .skills{ grid-column: span 7; }
+    .skills .card-pad{ padding: 16px 18px 18px; }
+    .skill{ margin-top: 14px; }
+    .skill-row{
+      display:flex; justify-content: space-between; gap: 10px;
+      font-size: 13px; color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .bar{
+      height: 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.04);
+      overflow: hidden;
+      position: relative;
+    }
+    [data-theme="dark"] .bar{ background: rgba(255,255,255,.06); }
+    .fill{
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), rgba(10,132,255,.55));
+      transition: width 1.0s var(--ease);
+    }
+    .toolbox{ grid-column: span 5; }
+    @media (max-width: 900px){ .skills, .toolbox{ grid-column: span 12; } }
+    .tool-list{
+      display:flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 8px;
+    }
+
+    /* Experience timeline */
+    .xp{ display:grid; gap: 12px; }
+    .xp-item{
+      display:flex; gap: 14px;
+      padding: 16px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.55);
+    }
+    [data-theme="dark"] .xp-item{ background: rgba(20,20,26,.50); }
+    .xp-dot{
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent);
+      margin-top: 7px;
+      flex: 0 0 10px;
+      box-shadow: 0 0 0 6px var(--accent2);
+    }
+    .xp-role{ margin:0; font-weight: 680; letter-spacing: -0.02em; }
+    .xp-meta{ margin: 4px 0 10px; color: var(--muted); font-size: 13px; }
+    .xp-impact{ margin:0; color: var(--muted); font-size: 14px; }
+
+    /* Footer */
+    footer{
+      margin-top: 52px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      display:flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .foot-links{ display:flex; gap: 10px; flex-wrap: wrap; }
+
+    /* Scroll reveal */
+    .reveal{ opacity: 0; transform: translateY(16px); transition: opacity .65s var(--ease), transform .65s var(--ease); }
+    .reveal.on{ opacity: 1; transform: translateY(0); }
+
+    /* Modal */
+    .modal{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.44);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 80;
+    }
+    .modal.show{ display:flex; }
+    .modal-card{
+      width: min(820px, 100%);
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: transform .25s var(--ease), opacity .25s var(--ease);
+    }
+    [data-theme="dark"] .modal-card{ background: #0b0b10; }
+    .modal.show .modal-card{ transform: translateY(0); opacity: 1; }
+    .modal-head{
+      display:flex; align-items:center; justify-content: space-between; gap: 10px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to bottom, rgba(255,255,255,.8), rgba(255,255,255,.4));
+    }
+    [data-theme="dark"] .modal-head{ background: linear-gradient(to bottom, rgba(20,20,26,.65), rgba(20,20,26,.40)); }
+    .modal-title{ margin:0; font-weight: 700; letter-spacing: -0.02em; }
+    .modal-body{ padding: 16px; }
+    .modal-body p{ margin: 0 0 10px; color: var(--muted); }
+    .modal-body .mini{
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.04);
+      overflow:auto;
+      color: rgba(11,11,15,.78);
+    }
+    [data-theme="dark"] .modal-body .mini{ background: rgba(255,255,255,.06); color: rgba(255,255,255,.72); }
+
+    /* Subtle selection */
+    ::selection{ background: rgba(10,132,255,.22); }
+  </style>
+</head>
+
+<body data-theme="light">
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Muhammad Bilal</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#awards">Awards</a>
+        <button class="btn" id="themeBtn" type="button" aria-label="Toggle theme">
+          <span class="icon">⌘</span><span id="themeLabel">Light</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <header class="hero">
+      <div class="reveal">
+        <h1 class="h-title">Digital Insights & Growth Strategist.</h1>
+        <p class="h-sub">
+          I turn complex data into decisions people actually use — through AI-enabled analytics,
+          conversational data access, and lifecycle strategy.
+        </p>
+
+        <div class="pill-row" aria-label="Highlights">
+          <span class="pill">AI-driven analytics</span>
+          <span class="pill">Conversational data bot</span>
+          <span class="pill">Customer scoring & personalization</span>
+          <span class="pill">Growth & experimentation</span>
+        </div>
+
+        <div class="cta-row">
+          <!-- Replace placeholders with your real links -->
+          <a class="btn cta-primary" href="#projects">Explore work</a>
+          <a class="btn cta-secondary" href="mailto:your.email@example.com">Email</a>
+          <a class="btn cta-secondary" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+
+      <aside class="card reveal" aria-label="Snapshot">
+        <div class="card-pad">
+          <div class="stat">
+            <div class="k">Current focus</div>
+            <div class="v">Data democracy + growth systems</div>
+          </div>
+          <div class="stat">
+            <div class="k">Strength</div>
+            <div class="v">Strategy ↔ Execution ↔ Analytics</div>
+          </div>
+          <div class="stat" style="margin-bottom:0;">
+            <div class="k">Signature</div>
+            <div class="v">Minimal UX, maximum clarity</div>
+          </div>
+        </div>
+      </aside>
+    </header>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+      <div class="sec-head">
+        <h2 class="sec-title">Selected projects</h2>
+        <p class="sec-note">High-impact systems that scale decision-making and growth.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card proj" tabindex="0"
+          data-title="AI-Driven Shopify Intelligence System"
+          data-tag="Analytics Automation"
+          data-desc="Designed AI-assisted querying and a dashboard layer that turns Shopify data into business-ready insights—reducing manual effort and accelerating leadership decision-making."
+          data-tools="SQL · Metabase · Power BI · AI prompting"
+          data-details="Built a reliable reporting layer from Shopify exports/warehouse tables, standardized KPIs, and created reusable query patterns. Output: decision-grade dashboards for leadership and teams."
+        >
+          <div class="proj-top">
+            <h3 class="proj-title">Shopify Intelligence</h3>
+            <span class="proj-tag">Automation</span>
+          </div>
+          <div class="proj-body">
+            <p class="proj-desc">AI-assisted querying → business-ready dashboards.</p>
+            <div class="proj-meta">
+              <span class="chip">SQL</span><span class="chip">Metabase</span><span class="chip">Power BI</span><span class="chip">AI</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card proj" tabindex="0"
+          data-title="Company-Wide Data Bot (Conversational Analytics)"
+          data-tag="Data Democracy"
+          data-desc="Developed a conversational data bot hosted on Microsoft Copilot so teams can access insights anytime—without code or Excel exports."
+          data-tools="SQL · BI layer · Copilot · AI workflows"
+          data-details="Rolled out to the organization as a single source of truth. Improves speed-to-insight, enables self-serve exploration, and reduces dependency on ad-hoc requests."
+        >
+          <div class="proj-top">
+            <h3 class="proj-title">Data Bot on Copilot</h3>
+            <span class="proj-tag">Conversational</span>
+          </div>
+          <div class="proj-body">
+            <p class="proj-desc">Insights on-demand, no-code, single source of truth.</p>
+            <div class="proj-meta">
+              <span class="chip">Copilot</span><span class="chip">SQL</span><span class="chip">AI</span><span class="chip">BI</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card proj" tabindex="0"
+          data-title="Customer Scoring Model (100-point framework)"
+          data-tag="Lifecycle Growth"
+          data-desc="Built a 100-point customer scoring model to identify high-value users, personalize journeys, and reduce acquisition/retention cost through smarter targeting."
+          data-tools="SQL · Lifecycle analytics · Segmentation"
+          data-details="A behavioral + value framework used to prioritize customers, craft tailored communications, and build a long-term growth strategy grounded in user quality."
+        >
+          <div class="proj-top">
+            <h3 class="proj-title">Customer Scoring Model</h3>
+            <span class="proj-tag">Personalization</span>
+          </div>
+          <div class="proj-body">
+            <p class="proj-desc">Quality-based growth strategy and targeting efficiency.</p>
+            <div class="proj-meta">
+              <span class="chip">Segmentation</span><span class="chip">Lifecycle</span><span class="chip">SQL</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card proj" tabindex="0"
+          data-title="Mystery Box (Award-Winning Activation)"
+          data-tag="Growth Campaign"
+          data-desc="Led an innovative eCommerce activation combining gamified discovery and performance marketing; earned recognition for innovation and execution excellence."
+          data-tools="Paid media · Experimentation · Analytics"
+          data-details="A state-of-the-art digital campaign built outside the usual playbook—mixing creativity with performance discipline to deliver standout results."
+        >
+          <div class="proj-top">
+            <h3 class="proj-title">Mystery Box Campaign</h3>
+            <span class="proj-tag">Award</span>
+          </div>
+          <div class="proj-body">
+            <p class="proj-desc">Creativity + numbers = a campaign people remember.</p>
+            <div class="proj-meta">
+              <span class="chip">Paid Media</span><span class="chip">A/B Tests</span><span class="chip">Analytics</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="reveal">
+      <div class="sec-head">
+        <h2 class="sec-title">Skills</h2>
+        <p class="sec-note">A practical stack built for growth, insight, and execution.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card skills">
+          <div class="card-pad">
+            <div class="skill" data-level="92">
+              <div class="skill-row"><span>Growth & Experimentation</span><span class="muted">Advanced</span></div>
+              <div class="bar"><div class="fill"></div></div>
+            </div>
+
+            <div class="skill" data-level="95">
+              <div class="skill-row"><span>Analytics & Dashboards</span><span class="muted">Advanced</span></div>
+              <div class="bar"><div class="fill"></div></div>
+            </div>
+
+            <div class="skill" data-level="90">
+              <div class="skill-row"><span>SQL & Data Modeling</span><span class="muted">Advanced</span></div>
+              <div class="bar"><div class="fill"></div></div>
+            </div>
+
+            <div class="skill" data-level="88">
+              <div class="skill-row"><span>Stakeholder & Cross-functional Leadership</span><span class="muted">Strong</span></div>
+              <div class="bar"><div class="fill"></div></div>
+            </div>
+
+            <div class="skill" data-level="86">
+              <div class="skill-row"><span>Product & Lifecycle Strategy</span><span class="muted">Strong</span></div>
+              <div class="bar"><div class="fill"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card toolbox">
+          <div class="card-pad">
+            <h3 style="margin:0; font-size:15px; letter-spacing:-0.02em;">Toolbox</h3>
+            <p style="margin:8px 0 0; color:var(--muted); font-size:14px;">
+              Comfortable moving between execution tools and analytics layers.
+            </p>
+            <div class="tool-list" aria-label="Tools">
+              <span class="chip">Power BI</span>
+              <span class="chip">Tableau</span>
+              <span class="chip">Metabase</span>
+              <span class="chip">GA4</span>
+              <span class="chip">Adobe Analytics</span>
+              <span class="chip">Amplitude</span>
+              <span class="chip">Adjust</span>
+              <span class="chip">Firebase</span>
+              <span class="chip">GTM</span>
+              <span class="chip">Excel</span>
+              <span class="chip">Copilot</span>
+              <span class="chip">A/B Testing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="reveal">
+      <div class="sec-head">
+        <h2 class="sec-title">Experience</h2>
+        <p class="sec-note">Transformation and growth across enterprise + startup environments.</p>
+      </div>
+
+      <div class="xp">
+        <div class="xp-item">
+          <div class="xp-dot" aria-hidden="true"></div>
+          <div>
+            <h3 class="xp-role">BAT — Digital Insights & Data Infrastructure</h3>
+            <div class="xp-meta">2025–Present</div>
+            <p class="xp-impact">
+              Built decision systems that turn marketing and product data into clear actions—enabling faster execution, better optimization, and consistent performance visibility.
+            </p>
+          </div>
+        </div>
+
+        <div class="xp-item">
+          <div class="xp-dot" aria-hidden="true"></div>
+          <div>
+            <h3 class="xp-role">Lipton Teas & Infusions — eCommerce Growth Lead</h3>
+            <div class="xp-meta">2023–2025</div>
+            <p class="xp-impact">
+              Drove eCommerce growth through cross-functional collaboration and high-impact activations—balancing creativity with performance discipline in complex, global environments.
+            </p>
+          </div>
+        </div>
+
+        <div class="xp-item">
+          <div class="xp-dot" aria-hidden="true"></div>
+          <div>
+            <h3 class="xp-role">CreditBook — Product Growth Associate (Fintech)</h3>
+            <div class="xp-meta">2022–2023</div>
+            <p class="xp-impact">
+              Scaled acquisition and activation through experimentation-led growth—building user journeys that convert, retain, and reactivate with sharp efficiency.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section id="awards" class="reveal">
+      <div class="sec-head">
+        <h2 class="sec-title">Recognition</h2>
+        <p class="sec-note">Proof that innovation and execution can coexist.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-pad">
+          <h3 style="margin:0 0 8px; letter-spacing:-0.02em;">Mystery Box — Special Mention Award</h3>
+          <p style="margin:0 0 10px; color:var(--muted);">
+            An innovative, performance-led activation recognized for execution excellence.
+          </p>
+          <a class="btn" href="https://dragonsofasia.org/assets/pdf/2025/2025%20Dragons%20of%20Pakistan%20Winners%20Release.pdf" target="_blank" rel="noreferrer">
+            View award release <span class="icon">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <div class="sec-head">
+        <h2 class="sec-title">Let’s connect</h2>
+        <p class="sec-note">Open to roles in growth, product marketing, and analytics-led strategy.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-pad">
+          <p style="margin:0 0 14px; color:var(--muted);">
+            Prefer minimal messages. Clear context. Fast decisions.
+          </p>
+          <div class="cta-row">
+            <a class="btn cta-primary" href="mailto:your.email@example.com">Email me</a>
+            <a class="btn cta-secondary" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="btn cta-secondary" href="#projects">Projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Muhammad Bilal</div>
+      <div class="foot-links">
+        <a href="#projects">Work</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#awards">Awards</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Project details">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 class="modal-title" id="modalTitle">Project</h3>
+        <button class="btn" id="closeModal" type="button" aria-label="Close">
+          <span class="icon">esc</span> Close
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="modalDesc"></p>
+        <div class="mini" id="modalTools"></div>
+        <p style="margin-top:12px;" id="modalDetails"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // --- Theme toggle (persists)
+    const themeBtn = document.getElementById("themeBtn");
+    const themeLabel = document.getElementById("themeLabel");
+    const root = document.body;
+
+    function setTheme(mode){
+      root.setAttribute("data-theme", mode);
+      themeLabel.textContent = mode === "dark" ? "Dark" : "Light";
+      localStorage.setItem("theme", mode);
+    }
+    const savedTheme = localStorage.getItem("theme");
+    setTheme(savedTheme ? savedTheme : "light");
+
+    themeBtn.addEventListener("click", () => {
+      const current = root.getAttribute("data-theme");
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+
+    // --- Scroll reveal
+    const reveals = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          e.target.classList.add("on");
+          // Animate skill bars when skills section comes in
+          if(e.target.id === "skills"){
+            animateSkillBars();
+          }
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => io.observe(el));
+
+    // --- Skill bar animation
+    function animateSkillBars(){
+      document.querySelectorAll(".skill").forEach(s => {
+        const level = s.getAttribute("data-level");
+        const fill = s.querySelector(".fill");
+        requestAnimationFrame(() => {
+          fill.style.width = Math.max(6, Math.min(100, Number(level))) + "%";
+        });
+      });
+    }
+
+    // --- Modal for project cards
+    const modal = document.getElementById("modal");
+    const closeModalBtn = document.getElementById("closeModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDesc = document.getElementById("modalDesc");
+    const modalTools = document.getElementById("modalTools");
+    const modalDetails = document.getElementById("modalDetails");
+
+    function openModalFrom(el){
+      modalTitle.textContent = el.dataset.title || "Project";
+      modalDesc.textContent = el.dataset.desc || "";
+      modalTools.textContent = (el.dataset.tools || "").trim();
+      modalDetails.textContent = el.dataset.details || "";
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+      closeModalBtn.focus();
+    }
+    function closeModal(){
+      modal.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll(".proj").forEach(card => {
+      card.addEventListener("click", () => openModalFrom(card));
+      card.addEventListener("keydown", (e) => {
+        if(e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          openModalFrom(card);
+        }
+      });
+    });
+
+    closeModalBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if(e.target === modal) closeModal();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && modal.classList.contains("show")) closeModal();
+    });
+
+    // --- Smooth anchor scroll (native behavior with fallback)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const id = a.getAttribute("href");
+        const target = document.querySelector(id);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          history.pushState(null, "", id);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
